@@ -15,10 +15,18 @@ JARVIS Work Companion v4 busca funcionar como una capa inteligente de ejecución
 - pyttsx3 para síntesis de voz local
 - Flask para API opcional, integración web y módulos HTTP
 - threading y procesamiento paralelo para multitarea y escucha continua
+- SQLite para almacenamiento local y registro de sesiones
+- JSON/YAML para configuración y datos de entorno
+- OCR con pytesseract para lectura de documentos y extracción de texto
+- integración con APIs externas y servicios web
+- OpenAI / LLM-ready architecture para IA conversacional
+- PyInstaller para empaquetado de ejecutables
+- Docker para contenedorización y despliegue profesional
+- WebSockets / REST APIs para conectividad en red
 - Git y GitHub para versionado, despliegue y colaboración
 - pytest para validación automática
 - macOS native voice fallback mediante `say`
-- arquitectura modular preparada para expansión con IA, workflow automation y conectores empresariales
+- arquitectura modular preparada para expansión con IA, workflow automation, microservicios y conectores empresariales
 
 ## Capacidades actuales
 
@@ -124,11 +132,16 @@ Futuras ampliaciones recomendadas para llevar la v4 a nivel producto comercial r
 - integración con APIs de clima, email, calendario, CRM y gestión de tareas
 - voz mejorada con TTS premium y modelos más naturales
 - sistema de plugins y módulos empresariales
-- empaquetado para Windows, macOS y Linux
+- empaquetado para Windows, macOS y Linux con PyInstaller
 - módulo de seguridad, auditoría y políticas de acceso
 - automatización con agentes IA y conectores a herramientas internas
 - despliegue y gestión en equipos corporativos
 - analítica de uso, métricas y reporting ejecutivo
+- OCR avanzado para documentos, facturas y escaneo de texto
+- almacenamiento con SQLite/PostgreSQL para historial y contexto de trabajo
+- integración con IA generativa para análisis, automatización y generación de acciones
+- contenedorización con Docker para despliegue multi-entorno
+- soporte multiusuario, sesiones y control administrativo
 
 ## Diferenciador comercial
 
