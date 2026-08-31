@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JARVIS Interface</title>
+    <style>
+      :root {
+        --bg: #040d1a;
+        --bg-2: #061a2e;
+        --panel: rgba(12, 24, 38, 0.92);
+        --cyan: #79e7ff;
+        --cyan-soft: rgba(121, 231, 255, 0.12);
+        --green: #7ef7b5;
+        --text: #ebf9ff;
+        --muted: #9cb9c9;
+        --warning: #ffca6d;
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: Arial, sans-serif;
+        background: radial-gradient(circle at top, rgba(121, 231, 255, 0.14), transparent 25%), linear-gradient(180deg, var(--bg), var(--bg-2), #02070d);
+        color: var(--text);
+      }
+
+      .hud { max-width: 1400px; margin: 0 auto; padding: 24px; }
+      .topbar {
+        display: flex; align-items: center; justify-content: space-between; padding-bottom: 16px;
+        border-bottom: 1px solid rgba(121, 231, 255, 0.25);
+      }
+
+      .brand {
+        letter-spacing: 0.42em; font-weight: 700; color: var(--cyan); text-transform: uppercase;
+      }
+
+      .status-pill {
+        border: 1px solid rgba(126, 247, 181, 0.35);
+        background: rgba(126, 247, 181, 0.08);
+        color: var(--green);
+        padding: 8px 12px; border-radius: 999px; letter-spacing: 0.12em; font-size: 11px;
+      }
+
+      .layout {
+        display: grid; grid-template-columns: 1.5fr 0.7fr; gap: 24px; margin-top: 22px;
+      }
+
+      .panel {
+        background: var(--panel); border: 1px solid rgba(121, 231, 255, 0.22);
+        border-radius: 18px; box-shadow: 0 0 28px rgba(121, 231, 255, 0.08); padding: 18px;
+      }
+
+      .terminal { min-height: 440px; display: flex; flex-direction: column; }
+      .terminal-header { display: flex; gap: 10px; margin-bottom: 14px; }
+      .dot { width: 12px; height: 12px; border-radius: 50%; display: inline-block; }
+      .dot.red { background: #ff5f57; }
+      .dot.yellow { background: #ffbd2e; }
+      .dot.green { background: #28c840; }
+
+      .console {
+        flex: 1; overflow: auto; background: rgba(0, 0, 0, 0.18); border-radius: 12px; border: 1px solid rgba(121, 231, 255, 0.12);
+        padding: 18px; color: var(--cyan); font-family: "SFMono-Regular", Consolas, monospace; line-height: 1.7;
+      }
+
+      .log-line { margin: 4px 0; }
+
+      .input-row { display: flex; gap: 12px; margin-top: 14px; }
+      input {
+        flex: 1; padding: 14px 16px; border-radius: 10px; border: 1px solid rgba(121, 231, 255, 0.22); background: rgba(5, 13, 21, 0.9);
+        color: var(--text); font-size: 16px;
+      }
+      button {
+        padding: 0 22px; border-radius: 10px; border: 1px solid rgba(121, 231, 255, 0.32); background: linear-gradient(135deg, rgba(121,231,255,0.18), rgba(121,231,255,0.28));
+        color: var(--text); cursor: pointer; font-weight: 700;
+      }
+
+      .sidebar { display: flex; flex-direction: column; gap: 18px; }
+      .card-title { color: var(--muted); text-transform: uppercase; letter-spacing: 0.18em; font-size: 11px; margin-bottom: 14px; }
+      .metrics { display: grid; grid-template-columns: repeat(2, minmax(120px, 1fr)); gap: 12px; }
+      .metric {
+        background: var(--cyan-soft); border: 1px solid rgba(121, 231, 255, 0.1); border-radius: 12px; padding: 16px;
+      }
+      .metric .label { display: block; color: var(--muted); font-size: 11px; margin-bottom: 8px; }
+      .metric .value { font-weight: 700; font-size: 1.05rem; }
+      .list { margin: 0; padding-left: 18px; color: var(--muted); line-height: 1.9; }
+
+      @media (max-width: 900px) { .layout { grid-template-columns: 1fr; } }
+    </style>
+  </head>
+  <body>
+    <div class="hud">
+      <div class="topbar">
+        <div class="brand">J.A.R.V.I.S</div>
+        <div class="status-pill">SYSTEM ONLINE</div>
+      </div>
+
+      <div class="layout">
+        <section class="panel terminal">
+          <div class="terminal-header">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+          </div>
+          <div class="console" id="console">
+            <div class="log-line">[BOOT] Initializing core systems...</div>
+            <div class="log-line">[AI] JARVIS online and ready.</div>
+            <div class="log-line">[CMD] Type a command: "status", "time", "date", "report"</div>
+          </div>
+          <div class="input-row">
+            <input id="commandInput" type="text" placeholder="Ask JARVIS..." />
+            <button id="sendBtn">Execute</button>
+          </div>
+        </section>
+
+        <aside class="sidebar">
+          <div class="panel">
+            <div class="card-title">System Metrics</div>
+            <div class="metrics">
+              <div class="metric"><span class="label">CPU</span><span class="value" id="cpuValue">Nominal</span></div>
+              <div class="metric"><span class="label">Memory</span><span class="value" id="memoryValue">Stable</span></div>
+              <div class="metric"><span class="label">Disk</span><span class="value" id="diskValue">Online</span></div>
+              <div class="metric"><span class="label">Uptime</span><span class="value" id="uptimeValue">Active</span></div>
+            </div>
+          </div>
+
+          <div class="panel">
+            <div class="card-title">Core Commands</div>
+            <ul class="list">
+              <li>jarvis status</li>
+              <li>jarvis diagnose</li>
+              <li>jarvis report</li>
+              <li>jarvis time</li>
+              <li>jarvis date</li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+    </div>
+
+    <script>
+      const consoleEl = document.getElementById('console');
+      const inputEl = document.getElementById('commandInput');
+      const sendBtn = document.getElementById('sendBtn');
+
+      function logMessage(message) {
+        const line = document.createElement('div');
+        line.className = 'log-line';
+        line.textContent = message;
+        consoleEl.appendChild(line);
+        consoleEl.scrollTop = consoleEl.scrollHeight;
+      }
+
+      async function fetchStatus() {
+        try {
+          const response = await fetch('/api/status');
+          const data = await response.json();
+          document.getElementById('cpuValue').textContent = data.system ? 'Nominal' : 'Unknown';
+          document.getElementById('memoryValue').textContent = data.resources ? `${data.resources.disk_percent}%` : 'Unknown';
+          document.getElementById('diskValue').textContent = data.resources ? data.resources.disk_free : 'Unknown';
+          document.getElementById('uptimeValue').textContent = data.system ? data.system.uptime : 'Unknown';
+        } catch (error) {
+          console.error(error);
+        }
+      }
+
+      async function sendCommand() {
+        const command = inputEl.value.trim();
+        if (!command) return;
+
+        logMessage(`[YOU] ${command}`);
+        inputEl.value = '';
+
+        try {
+          const response = await fetch('/api/command', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ command })
+          });
+
+          const data = await response.json();
+          logMessage(`[JARVIS] ${data.reply}`);
+
+          if (data.intent && data.intent !== 'default') {
+            fetchStatus();
+          }
+        } catch (error) {
+          logMessage('[SYSTEM] Connection error. Please try again.');
+        }
+      }
+
+      sendBtn.addEventListener('click', sendCommand);
+      inputEl.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter') sendCommand();
+      });
+
+      fetchStatus();
+    </script>
+  </body>
+</html>
