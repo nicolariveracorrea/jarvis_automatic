@@ -15,7 +15,7 @@ except Exception:  # pragma: no cover
 class JarvisDesktopApp:
     def __init__(self):
         self.root = tk.Tk()
-        self.root.title("JARVIS Work Companion")
+        self.root.title("JARVIS Work Companion v3")
         self.root.geometry("720x480")
         self.root.configure(bg="#06131c")
         self.root.resizable(False, False)

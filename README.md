@@ -1,6 +1,6 @@
-# JARVIS Work Companion
+# JARVIS Work Companion v3
 
-Aplicación local de escritorio inspirada en JARVIS, diseñada como compañero de trabajo para apoyar tareas, estado del sistema y activación por voz.
+Aplicación local de escritorio inspirada en JARVIS, diseñada como compañero de trabajo para apoyar tareas, estado del sistema y activación por voz. Versión 3 del producto.
 
 ## Características
 
