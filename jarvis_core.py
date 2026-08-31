@@ -9,8 +9,8 @@ from typing import Dict, Any
 class JarvisCore:
     def __init__(self):
         self.name = "JARVIS"
-        self.display_name = "Work Companion v3"
-        self.version = "3.0.0"
+        self.display_name = "Work Companion v4"
+        self.version = "4.0.0"
         self.start_time = datetime.datetime.now()
         self.api_keys = {
             "openai": os.environ.get("OPENAI_API_KEY"),
