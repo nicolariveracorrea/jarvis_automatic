@@ -55,3 +55,26 @@ Si la cámara está disponible y el entorno lo soporta, el sistema intenta verif
 ## Nota importante
 
 Este proyecto está pensado como compañero de trabajo de escritorio, no como asistente personal doméstico. En entornos sin cámara o sin soporte completo de OpenCV, la app sigue ejecutándose en modo seguro en vez de romperse.
+
+## Versión comercial v3
+
+La versión v3 está pensada para posicionarse como una solución profesional y comercial, con el siguiente alcance premium:
+
+- UI premium y diseño ejecutivo
+- Instalación y empaquetado para distribución
+- Soporte técnico y mantenimiento
+- Voz más limpia y personalizada
+- Autenticación real con biometría opcional
+- Modelo de negocio y licencias comerciales
+- Documentación profesional para clientes y equipos
+- Posibilidad de venta a empresas y organizaciones
+
+### Precio orientativo
+
+Para una oferta comercial más seria y rentable, este producto puede posicionarse en una estructura de precios de empresa:
+
+- $40,000 USD para una versión premium de producto / paquete empresarial
+- $10,000 a $20,000 USD para una edición de negocio intermedia
+- $1,500 a $5,000 USD para despliegue o licencia de equipo
+
+> Esta estimación refleja una propuesta comercial realista para una versión profesional de producto, no un precio de hobby o prototipo.
