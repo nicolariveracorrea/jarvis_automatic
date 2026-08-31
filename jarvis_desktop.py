@@ -15,7 +15,7 @@ except Exception:  # pragma: no cover
 class JarvisDesktopApp:
     def __init__(self):
         self.root = tk.Tk()
-        self.root.title("JARVIS Desktop")
+        self.root.title("JARVIS Work Companion")
         self.root.geometry("720x480")
         self.root.configure(bg="#06131c")
         self.root.resizable(False, False)
@@ -65,8 +65,8 @@ class JarvisDesktopApp:
             wrap="word",
         )
         self.log_area.pack(padx=18, pady=10)
-        self.log_area.insert("end", "[BOOT] JARVIS core initialized.\n")
-        self.log_area.insert("end", "[LOCK] Awaiting voice activation phrase.\n")
+        self.log_area.insert("end", "[BOOT] JARVIS work companion initialized.\n")
+        self.log_area.insert("end", "[LOCK] Awaiting activation phrase.\n")
         self.log_area.configure(state="disabled")
 
         button_frame = tk.Frame(self.root, bg="#06131c")
@@ -74,7 +74,7 @@ class JarvisDesktopApp:
 
         self.activate_button = tk.Button(
             button_frame,
-            text="ACTIVATE JARVIS",
+            text="START WORK MODE",
             width=18,
             height=2,
             bg="#0b2a3a",
@@ -143,33 +143,41 @@ class JarvisDesktopApp:
             self.log(f"[VOICE] {text}")
 
     def check_face(self) -> bool:
-        cascade_path = cv2.data.haarcascades + "haarcascade_frontalface_default.xml"
-        face_cascade = cv2.CascadeClassifier(cascade_path)
-        if face_cascade.empty():
-            self.log("[FACE] Face classifier not available.")
+        try:
+            if not hasattr(cv2, "CascadeClassifier"):
+                self.log("[FACE] OpenCV face detection is unavailable in this environment.")
+                return False
+
+            cascade_path = cv2.data.haarcascades + "haarcascade_frontalface_default.xml"
+            face_cascade = cv2.CascadeClassifier(cascade_path)
+            if face_cascade.empty():
+                self.log("[FACE] Face classifier not available.")
+                return False
+
+            capture = cv2.VideoCapture(0)
+            if not capture.isOpened():
+                self.log("[FACE] Camera unavailable. Face auth blocked.")
+                return False
+
+            deadline = time.time() + 8
+            while time.time() < deadline:
+                ok, frame = capture.read()
+                if not ok:
+                    break
+                gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+                faces = face_cascade.detectMultiScale(gray, scaleFactor=1.2, minNeighbors=5)
+                if len(faces) > 0:
+                    capture.release()
+                    cv2.destroyAllWindows()
+                    return True
+                time.sleep(0.2)
+
+            capture.release()
+            cv2.destroyAllWindows()
             return False
-
-        capture = cv2.VideoCapture(0)
-        if not capture.isOpened():
-            self.log("[FACE] Camera unavailable. Face auth blocked.")
+        except Exception as exc:
+            self.log(f"[FACE_ERROR] {exc}")
             return False
-
-        deadline = time.time() + 8
-        while time.time() < deadline:
-            ok, frame = capture.read()
-            if not ok:
-                break
-            gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-            faces = face_cascade.detectMultiScale(gray, scaleFactor=1.2, minNeighbors=5)
-            if len(faces) > 0:
-                capture.release()
-                cv2.destroyAllWindows()
-                return True
-            time.sleep(0.2)
-
-        capture.release()
-        cv2.destroyAllWindows()
-        return False
 
     def listen_for_activation(self):
         if self.microphone is None or self.recognizer is None:
@@ -198,8 +206,8 @@ class JarvisDesktopApp:
         self.speak("Identity verification required. Please look at the camera.")
 
         if not self.check_face():
-            self.log("[AUTH] Face rejected. Access denied.")
-            self.speak("Access denied. Face not recognized.")
+            self.log("[AUTH] Camera not available or face not recognized. Access blocked.")
+            self.speak("Access denied. Camera unavailable or face not recognized.")
             self.status_label.config(text="ACCESS DENIED")
             self.status_label.config(fg="#ff8d8d")
             return
@@ -209,8 +217,8 @@ class JarvisDesktopApp:
         self.last_status = "Online"
         self.status_label.config(text="SYSTEM ONLINE")
         self.status_label.config(fg="#7ef7b5")
-        self.log("[AUTH] Face recognized. Welcome, sir.")
-        self.speak("Face confirmed. JARVIS online and ready.")
+        self.log("[AUTH] Face recognized. Welcome back.")
+        self.speak("Face confirmed. JARVIS is online and ready to support the team.")
         self.run_commands_loop()
 
     def run_commands_loop(self):
@@ -250,7 +258,7 @@ class JarvisDesktopApp:
             self.lock_system()
             self.speak("System locked. Awaiting authorization.")
         elif any(word in text for word in ["who are you", "what are you", "identity", "help"]):
-            self.speak("I am JARVIS, your autonomous assistant. I monitor status, answer requests, and protect access with identity verification.")
+            self.speak("I am JARVIS, your work companion. I monitor systems, support workflows, and protect team access with identity verification.")
         elif any(word in text for word in ["open", "launch", "start", "run"]):
             self.speak("I am preparing the requested action and checking the current system state before execution.")
         elif any(word in text for word in ["plan", "schedule", "task"]):

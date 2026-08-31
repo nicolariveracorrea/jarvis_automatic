@@ -1,22 +1,22 @@
-# JARVIS Desktop Assistant
+# JARVIS Work Companion
 
-Aplicación local con activación por voz, reconocimiento facial y voz sintética estilo JARVIS.
+Aplicación local de escritorio inspirada en JARVIS, diseñada como compañero de trabajo para apoyar tareas, estado del sistema y activación por voz.
 
 ## Características
 
-- Activa con una frase específica: "jarvis activate"
-- Requiere reconocimiento facial para autorizar el arranque
-- Voz sintética con TTS tipo JARVIS
-- Comandos por voz: status, time, date, report, lock, shutdown
-- Interfaz gráfica de escritorio en Python
-- Sin necesidad de abrir una página web
+- Activación por voz con la frase: "jarvis activate"
+- Interfaz gráfica de escritorio en Python con Tkinter
+- Verificación de identidad por rostro cuando hay cámara disponible
+- Voz sintética con fallback nativo del sistema
+- Comandos por voz básicos: status, time, date, report, lock, shutdown
+- Modo seguro si no hay cámara, micrófono o soporte facial completo disponible
 
 ## Requisitos
 
-- Python 3.11+
-- Cámara para reconocimiento facial
-- Micrófono
-- macOS / Linux / Windows
+- Python 3.9+
+- Micrófono para activación por voz
+- Cámara opcional para reconocimiento facial
+- Sistema operativo compatible con Tkinter y voz del sistema
 
 ## Instalación
 
@@ -30,6 +30,8 @@ pip install -r requirements.txt
 ## Ejecución
 
 ```bash
+cd /Users/grafica3-7/Desktop/jarvis_automatic
+source .venv/bin/activate
 python jarvis_desktop.py
 ```
 
@@ -39,7 +41,7 @@ Di esta frase en voz alta:
 
 - "jarvis activate"
 
-Si el sistema reconoce tu rostro, se activa.
+Si la cámara está disponible y el entorno lo soporta, el sistema intenta verificar el rostro antes de activar el modo de trabajo.
 
 ## Comandos activos una vez encendido
 
@@ -50,6 +52,6 @@ Si el sistema reconoce tu rostro, se activa.
 - "lock"
 - "shutdown"
 
-## Nota
+## Nota importante
 
-Este flujo es más realista y orientado a una experiencia tipo asistente personal, sin depender de una página web.
+Este proyecto está pensado como compañero de trabajo de escritorio, no como asistente personal doméstico. En entornos sin cámara o sin soporte completo de OpenCV, la app sigue ejecutándose en modo seguro en vez de romperse.

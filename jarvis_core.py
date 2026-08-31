@@ -9,6 +9,7 @@ from typing import Dict, Any
 class JarvisCore:
     def __init__(self):
         self.name = "JARVIS"
+        self.display_name = "Work Companion"
         self.version = "1.2.0"
         self.start_time = datetime.datetime.now()
         self.api_keys = {
@@ -66,8 +67,8 @@ class JarvisCore:
 
         if any(keyword in normalized for keyword in ["hello", "hi", "hey", "hola"]):
             return self._build_response(
-                "Hello, sir. JARVIS online and ready to assist.",
-                "Hello, sir. JARVIS online and ready to assist.",
+                "Good to see you. JARVIS is online and ready to support the team.",
+                "Good to see you. JARVIS is online and ready to support the team.",
                 intent="greeting",
             )
 
@@ -113,15 +114,15 @@ class JarvisCore:
 
         if any(keyword in normalized for keyword in ["open", "abrir", "launch"]):
             return self._build_response(
-                "I can prepare local actions and external integrations. Tell me which app or service you want to open.",
-                "I can prepare local actions and external integrations. Tell me which app or service you want to open.",
+                "I can prepare local actions and team workflows. Tell me which app, file, or process you need to open.",
+                "I can prepare local actions and team workflows. Tell me which app, file, or process you need to open.",
                 intent="open",
             )
 
         if any(keyword in normalized for keyword in ["shutdown", "power off", "apagar"]):
             return self._build_response(
-                "I cannot power down the host from here, sir. I can prepare the shutdown sequence if you authorize it.",
-                "I cannot power down the host from here, sir. I can prepare the shutdown sequence if you authorize it.",
+                "I cannot power down the workstation without explicit authorization. I can prepare the shutdown sequence for the team lead.",
+                "I cannot power down the workstation without explicit authorization. I can prepare the shutdown sequence for the team lead.",
                 intent="shutdown",
             )
 
