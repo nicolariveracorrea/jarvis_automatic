@@ -9,24 +9,34 @@ JARVIS Work Companion v4 busca funcionar como una capa inteligente de ejecución
 ## Stack tecnológico
 
 - Python 3.9+
+- JavaScript / TypeScript para extensiones web o integración frontend
+- Node.js para servicios auxiliares y herramientas de backend
+- C# .NET para versiones empresariales, escritorio o servicios Windows
+- Java para módulos enterprise, APIs y despliegue escalable
+- Go para microservicios, procesamiento y integración rápida
+- Rust para módulos de alta seguridad y rendimiento crítico
 - Tkinter para interfaz gráfica de escritorio
 - OpenCV para procesamiento visual y reconocimiento facial
 - SpeechRecognition para reconocimiento de voz y activación por comando verbal
 - pyttsx3 para síntesis de voz local
 - Flask para API opcional, integración web y módulos HTTP
+- FastAPI para servicios REST modernos y escalables
 - threading y procesamiento paralelo para multitarea y escucha continua
 - SQLite para almacenamiento local y registro de sesiones
+- PostgreSQL para base de datos empresarial
+- Redis para caché, sesiones y control de velocidad
 - JSON/YAML para configuración y datos de entorno
 - OCR con pytesseract para lectura de documentos y extracción de texto
 - integración con APIs externas y servicios web
 - OpenAI / LLM-ready architecture para IA conversacional
+- LangChain / agentes IA para orquestación de tareas
 - PyInstaller para empaquetado de ejecutables
 - Docker para contenedorización y despliegue profesional
 - WebSockets / REST APIs para conectividad en red
 - Git y GitHub para versionado, despliegue y colaboración
 - pytest para validación automática
 - macOS native voice fallback mediante `say`
-- arquitectura modular preparada para expansión con IA, workflow automation, microservicios y conectores empresariales
+- arquitectura modular preparada para expansión con IA, workflow automation, microservicios, conectores empresariales y servicios en la nube
 
 ## Capacidades actuales
 
