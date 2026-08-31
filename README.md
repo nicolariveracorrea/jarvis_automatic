@@ -124,16 +124,6 @@ La versión v4 está pensada para posicionarse como una solución profesional y 
 - Documentación profesional para empresas, clientes y partners
 - Posibilidad de venta a organizaciones y entornos corporativos
 
-### Precio orientativo del paquete empresarial
-
-Para una oferta comercial premium de alto nivel, este producto puede posicionarse con un valor de mercado muy superior al MVP:
-
-- $400,000 USD para un paquete empresarial premium y escalable
-- $120,000 a $250,000 USD para ediciones de negocio intermedia
-- $15,000 a $60,000 USD para licencias, despliegue y soporte institucional
-
-> Este precio refleja una propuesta comercial estratégica para una solución empresarial inteligente, no un prototipo casual.
-
 ## Roadmap técnico
 
 Futuras ampliaciones recomendadas para llevar la v4 a nivel producto comercial real:
