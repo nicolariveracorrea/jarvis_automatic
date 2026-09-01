@@ -1,7 +1,6 @@
 # JARVIS Work Companion v4
 
-Aplicación local de escritorio inspirada en la idea de un asistente ejecutivo inteligente, diseñada como compañero de trabajo para monitorear sistemas, responder comandos por voz, verificar identidad, ejecutar operaciones y apoyar productividad en entornos profesionales. Versión 4 del producto con enfoque comercial premium.
-
+Aplicación local de escritorio inspirada en la idea de un asistente ejecutivo inteligente, diseñada como compañero de trabajo para monitorear sistemas, responder comandos por voz, verificar identidad, ejecutar operaciones y apoyar productividad en entornos profesionales. 
 ## Visión
 
 JARVIS Work Companion v4 busca funcionar como una capa inteligente de ejecución para equipos modernos: asistencia por voz, monitoreo del sistema, autenticación de usuario, automatización de tareas, control operativo y análisis de contexto sin depender de una página web ni de un navegador.
